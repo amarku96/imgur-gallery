@@ -24,7 +24,6 @@ export default function ImageContent({
     day: "numeric",
   });
 
-  console.log(`Formatted Date: ${formattedDate}`);
   return (
     <Link to={`/images/${id}`}>
       <Card sx={{ maxWidth: 345 }}>

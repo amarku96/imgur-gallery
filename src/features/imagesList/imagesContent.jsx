@@ -18,7 +18,6 @@ export default function ImageContent({
   downs,
 }) {
   const date2 = new Date(date * 1000);
-
   const formattedDate = date2.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -31,12 +30,7 @@ export default function ImageContent({
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader subheader={formattedDate} />
 
-        <CardMedia
-          component="img"
-          height="194"
-          image={imageURL}
-          alt="Paella dish"
-        />
+        <CardMedia component="img" height="194" image={imageURL} />
         <CardContent>
           <Typography variant="body2" color="text.secondary" noWrap={true}>
             {title}

@@ -10,7 +10,6 @@ To get the frontend running locally:
 
 Local web server will use port 5173 instead of standard React's port 3000 , so you will go to http://127.0.0.1:5173/
 
-Since this project is just an test the client id required from Imgur API is hardcoded inside /src/api/index.ts
 
 ## Packages used
 
@@ -21,13 +20,10 @@ Since this project is just an test the client id required from Imgur API is hard
 * Es lint
 * React router
 
-## Functionality overview
+## Functionality 
 
 This app uses Imgur API to consume gallery data
-
-**General functionality:**
-
 * View all images or videos in a grid
 * When clicking to a card you can see page details
-* Detail page include [title,  ups, downs, tags]
-* Some filters are also included like [sorting, section, window(only when section is set to top), show viral, show mature]
+* Detail page include title, points, ups, downs, tags
+* Filters are also included like sorting, section, window(only when section is set to top), show viral, show mature

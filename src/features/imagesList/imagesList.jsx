@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useFetchImagesQuery } from "../../api/imagesApiSlice";
 import { Box, CircularProgress, Grid, Pagination } from "@mui/material";
-import ImageContent from "./imagesContent";
+import ImageContent from "./ImagesContent";
 import Filters from "../filters/Filters";
 import { useState } from "react";
 

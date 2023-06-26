@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ImagesList } from "./features/imagesList/imagesList";
+import { ImagesList } from "./features/imagesList/ImagesList";
 import { SingleImagePage } from "./features/imagesList/SingleImagePage";
 import { Provider } from "react-redux";
 import { store } from "./app/store";

@@ -28,8 +28,7 @@ export const SingleImagePage = () => {
           height: 250,
           width: 400,
         }}
-        alt="The house from the offer."
-        src=" https://www.w3schools.com/howto/img_forest.jpg"
+        src="https://cdn.digitbin.com/wp-content/uploads/iMGUR-740x493.png"
       />
 
       <Box>

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import { useFetchImagesQuery } from "./imagesApiSlice";
 
 const initialState = {

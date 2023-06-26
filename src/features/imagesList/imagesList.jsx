@@ -37,7 +37,6 @@ export const ImagesList = () => {
 
   return (
     <>
-      {" "}
       <Filters />
       <Box sx={{ flexGrow: 1, margin: 2 }}>
         <Grid
@@ -45,16 +44,16 @@ export const ImagesList = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {currentItems?.map((i) => (
-            <Grid item xs={2} sm={4} md={3} key={i.id}>
+          {currentItems?.map((item) => (
+            <Grid item xs={2} sm={4} md={3} key={item.id}>
               <ImageContent
-                title={i.title}
-                id={i.id}
-                description={i.description}
-                date={i.datetime}
-                ups={i.ups}
-                downs={i.downs}
-                imageURL="https://www.w3schools.com/howto/img_forest.jpg"
+                title={item.title}
+                id={item.id}
+                description={item.description}
+                date={item.datetime}
+                ups={item.ups}
+                downs={item.downs}
+                imageURL="https://cdn.digitbin.com/wp-content/uploads/iMGUR-740x493.png"
               ></ImageContent>
             </Grid>
           ))}
@@ -67,7 +66,7 @@ export const ImagesList = () => {
             onChange={handlePageChange}
           />
         </Box>
-      </Box>{" "}
+      </Box>
     </>
   );
 };

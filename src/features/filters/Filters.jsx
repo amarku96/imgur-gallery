@@ -52,10 +52,8 @@ const Filters = () => {
     >
       <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Section</InputLabel>
+          <InputLabel>Section</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
             defaultValue="hot"
             label="Section"
             onChange={(e) => {
@@ -71,10 +69,8 @@ const Filters = () => {
 
       <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+          <InputLabel>Sort</InputLabel>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
             defaultValue="rising"
             label="Sort"
             onChange={(e) => {
@@ -92,10 +88,8 @@ const Filters = () => {
       {gallery.filters.section === "top" && (
         <Box sx={{ minWidth: 150 }}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Window</InputLabel>
+            <InputLabel>Window</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               defaultValue="day"
               label="Window"
               onChange={(e) => {

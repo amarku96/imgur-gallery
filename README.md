@@ -8,7 +8,7 @@ To get the frontend running locally:
 * `npm install` to install all required dependencies
 * `npm run dev` to start the local server (this project uses [https://vitejs.dev/](https://vitejs.dev))
 
-Local web server will use port 5173 instead of standard React's port 3000
+Local web server will use port 5173 instead of standard React's port 3000 , so you will go to http://127.0.0.1:5173/
 
 Since this project is just an test the client id required from Imgur API is hardcoded inside /src/api/index.ts
 

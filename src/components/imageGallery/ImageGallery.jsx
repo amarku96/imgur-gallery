@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import useFetchImages from '../../api/fetchImages';
-import styles from './ImageGallery.module.scss'; 
-import  { renderMedia } from '../../utility/helperfunctions';
-import ImageDetails from './ImageDetails';
+import React, { useEffect, useState } from "react";
+import useFetchImages from "../../api/fetchImages";
+import styles from "./ImageGallery.module.scss";
+import { renderMedia, usePagination } from "../../utility/helperfunctions";
+import ImageDetails from "./ImageDetails";
+import Filter from "../Filters/Filter";
 
 const ImageGallery = () => {
-
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const [params, setParams] = useState({
-    section: 'hot',
-    sort: 'viral',
-    window: 'day',
-    page: 1,
-    showViral: true
+    section: "hot",
+    sort: "viral",
+    window: "day",
+    page: currentPage,
+    showViral: true,
   });
+
+  useEffect(() => {
+    setParams((prevParams) => ({ ...prevParams, page: currentPage }));
+  }, [currentPage]);
 
   const { data, isLoading, error } = useFetchImages(params);
 
@@ -27,10 +33,16 @@ const ImageGallery = () => {
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
-console.log(selectedImage);
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
+  };
 
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
-if (isLoading) {
+  const currentItems = usePagination(currentPage, itemsPerPage, data);
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -38,34 +50,44 @@ if (isLoading) {
     return <div>Error: {error.message}</div>;
   }
 
- 
-
   return (
     <>
-       <div className={styles.sectionSelector}>
-        <button onClick={() => setSection('hot')}>Hot</button>
-        <button onClick={() => setSection('top')}>Top</button>
-        <button onClick={() => setSection('user')}>User</button>
-        <label>
-          Show Viral Images
-          <input 
-            type="checkbox" 
-            checked={params.showViral} 
-            onChange={handleViralToggle} 
-          />
-        </label>
+      <Filter
+        section={params.section}
+        onSectionChange={(e) => setSection(e.target.value)}
+        showViral={params.showViral}
+        onShowViralChange={handleViralToggle}
+      />
+
+      <div className={styles.galleryContainer}>
+        {currentItems?.map((image) => (
+          <div
+            key={image.id}
+            className={styles.galleryItem}
+            onClick={() => handleImageClick(image)}
+          >
+            {image.images &&
+              image.images.length > 0 &&
+              renderMedia(image, styles.galleryImage)}
+            <p className={styles.galleryTitle}>{image.title}</p>
+          </div>
+        ))}
       </div>
-    <div className={styles.galleryContainer}>
-      {data?.map((image) => (
-        <div key={image.id} className={styles.galleryItem } onClick={() => handleImageClick(image)}>
-          {image.images && image.images.length > 0 &&  renderMedia(image, styles.galleryImage)}
-          <p className={styles.galleryTitle}>{image.title}</p>
-        </div>
-      ))}
-    </div>
+
       {selectedImage && (
-        <ImageDetails image={selectedImage} onClose={() => setSelectedImage(null)} />
-      )}</>
+        <ImageDetails
+          image={selectedImage}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
+
+      <div className={styles.paginationControls}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Previous
+        </button>
+        <button onClick={handleNextPage}>Next</button>
+      </div>
+    </>
   );
 };
 

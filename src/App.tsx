@@ -1,6 +1,6 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ImageGallery from './components/imageGallery/ImageGallery';
-import Navbar from './components/navBar/Navbar';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import Navbar from "./components/NavBar/Navbar";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,11 +13,10 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-        <Navbar />
+      <Navbar />
       <ImageGallery></ImageGallery>
     </QueryClientProvider>
   );
 }
-
 
 export default App;

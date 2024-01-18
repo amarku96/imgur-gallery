@@ -1,0 +1,23 @@
+.galleryContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  padding: 10px;
+
+  .galleryItem {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .galleryImage {
+      max-width: 400px;
+      height: 300px;
+      display: block;
+    }
+
+    .galleryTitle {
+      padding: 8px;
+      text-align: center;
+    }
+  }
+}

@@ -42,7 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://127.0.0.1:3000",
+  "proxy": "https://your-proxy-server.com",
   "devDependencies": {
     "sass": "^1.69.7"
   }

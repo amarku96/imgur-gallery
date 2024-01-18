@@ -5,7 +5,7 @@ export default function isVideo(url) {
 export function renderMedia(image, style, referrerPolicy) {
   if (isVideo(image.images[0].link)) {
     return (
-      <video controls className={style}>
+      <video referrerPolicy="no-referrer" controls className={style}>
         <source src={image.images[0].link} type="video/mp4" />
       </video>
     );

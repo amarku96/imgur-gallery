@@ -4,6 +4,7 @@ import styles from "./ImageGallery.module.scss";
 import { renderMedia, usePagination } from "../../utility/helperfunctions";
 import ImageDetails from "./ImageDetails";
 import Filter from "../Filters/Filter";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -43,7 +44,7 @@ const ImageGallery = () => {
 
   const currentItems = usePagination(currentPage, itemsPerPage, data);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner></LoadingSpinner>;
   }
 
   if (error) {

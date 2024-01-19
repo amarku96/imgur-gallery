@@ -5,11 +5,14 @@ import { renderMedia, usePagination } from "../../utility/helperfunctions";
 import ImageDetails from "./ImageDetails";
 import Filter from "../Filters/Filter";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import Pagination from "../Pagination/Pagination";
 
 const ImageGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [totalPages, setTotalPages] = useState(0);
+
   const [params, setParams] = useState({
     section: "hot",
     sort: "viral",
@@ -18,31 +21,29 @@ const ImageGallery = () => {
     showViral: true,
   });
 
-  useEffect(() => {
-    setParams((prevParams) => ({ ...prevParams, page: currentPage }));
-  }, [currentPage]);
-
   const { data, isLoading, error } = useFetchImages(params);
+  const currentItems = usePagination(currentPage, itemsPerPage, data);
+
+  useEffect(() => {
+    if (data) {
+      setTotalPages(Math.ceil(data.length / itemsPerPage));
+    }
+    setParams((prevParams) => ({ ...prevParams, page: currentPage }));
+  }, [currentPage, data, itemsPerPage]);
 
   const setSection = (newSection) => {
     setParams({ ...params, section: newSection });
+    setCurrentPage(1);
   };
   const handleViralToggle = (event) => {
     setParams({ ...params, showViral: event.target.checked });
+    setCurrentPage(1);
   };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage > 1 ? currentPage - 1 : 1);
-  };
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const currentItems = usePagination(currentPage, itemsPerPage, data);
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
@@ -82,12 +83,11 @@ const ImageGallery = () => {
         />
       )}
 
-      <div className={styles.paginationControls}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Previous
-        </button>
-        <button onClick={handleNextPage}>Next</button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
     </>
   );
 };

@@ -1,7 +1,17 @@
 import React from "react";
 import styles from "./Filter.module.scss";
-
-const Filter = ({ section, onSectionChange, showViral, onShowViralChange }) => {
+type FilterProps = {
+  section: string;
+  onSectionChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  showViral: boolean;
+  onShowViralChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+const Filter: React.FC<FilterProps> = ({
+  section,
+  onSectionChange,
+  showViral,
+  onShowViralChange,
+}) => {
   return (
     <div className={styles.sectionSelector}>
       <div className={styles.dropdownGroup}>

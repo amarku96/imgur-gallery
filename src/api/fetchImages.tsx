@@ -1,10 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+type FetchParams = {
+  section: string;
+  sort: string;
+  window: string;
+  page: number;
+  showViral: boolean;
+};
 
-const fetchImages = async (params) => {
-  // const queryString = new URLSearchParams(params).toString();
-
-  const response = await axios.get(
+const fetchImages = async (params: FetchParams): Promise<any> => {
+  const response = await axios.get<AxiosResponse>(
     `https://api.imgur.com/3/gallery/${params.section}/${params.sort}/${params.window}/${params.page}`,
     {
       params: {
@@ -21,7 +26,7 @@ const fetchImages = async (params) => {
   return response.data.data;
 };
 
-const useFetchImages = (params) => {
+const useFetchImages = (params: FetchParams) => {
   return useQuery({
     queryKey: ["images", params],
     queryFn: () => fetchImages(params),
